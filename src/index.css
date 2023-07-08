@@ -14,21 +14,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.feedback{
+.feedback {
   display: flex;
   gap: 40px;
-    list-style: none;
-    padding-left: 0px;
-    margin-left: 0px;
+  list-style: none;
+  padding-left: 0px;
+  margin-left: 0px;
 }
-.feedback-btn{
-
-  background-color: #07573c; 
-  border: 2px solid #16eca5; 
-  color: rgb(236, 134, 134); 
-  padding: 10px 20px; 
-  border-radius: 10px; 
-  font-size: 16px; 
+.feedback-btn {
+  background-color: #07573c;
+  border: 2px solid #16eca5;
+  color: rgb(236, 134, 134);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
   font-weight: 700;
 }

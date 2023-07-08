@@ -10,17 +10,24 @@ const App = () => {
     bad: 0,
   });
 
-  const handleFeedback = (feedback) => {
-    setFeedbackCount((prevCount) => ({ ...prevCount, [feedback]: prevCount[feedback] + 1 }));
+  const handleFeedback = feedback => {
+    setFeedbackCount(prevCount => ({
+      ...prevCount,
+      [feedback]: prevCount[feedback] + 1,
+    }));
   };
 
   const { good, neutral, bad } = feedbackCount;
   const totalFeedback = good + neutral + bad;
-  const positivePercentage = totalFeedback > 0 ? Math.round((good / totalFeedback) * 100) : 0;
+  const positivePercentage =
+    totalFeedback > 0 ? Math.round((good / totalFeedback) * 100) : 0;
 
   return (
     <div>
-      <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={handleFeedback} />
+      <FeedbackOptions
+        options={['good', 'neutral', 'bad']}
+        onLeaveFeedback={handleFeedback}
+      />
       {totalFeedback > 0 ? (
         <Statistics
           good={good}

@@ -1,46 +1,50 @@
-import React, { useState } from 'react';
-import Statistics from './Statistics';
+import React from 'react';
 import FeedbackOptions from './FeedbackOptions';
+import Statistics from './Statistics';
 import Notification from './Notification';
 
-const App = () => {
-  const [feedbackCount, setFeedbackCount] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
+  }
 
-  const handleFeedback = feedback => {
-    setFeedbackCount(prevCount => ({
-      ...prevCount,
-      [feedback]: prevCount[feedback] + 1,
+  handleFeedback = (option) => {
+    this.setState((prevState) => ({
+      [option]: prevState[option] + 1,
     }));
   };
 
-  const { good, neutral, bad } = feedbackCount;
-  const totalFeedback = good + neutral + bad;
-  const positivePercentage =
-    totalFeedback > 0 ? Math.round((good / totalFeedback) * 100) : 0;
+  render() {
+    const { good, neutral, bad } = this.state;
+    const totalFeedback = good + neutral + bad;
+    const positivePercentage =
+      totalFeedback > 0 ? Math.round((good / totalFeedback) * 100) : 0;
 
-  return (
-    <div>
-      <FeedbackOptions
-        options={['good', 'neutral', 'bad']}
-        onLeaveFeedback={handleFeedback}
-      />
-      {totalFeedback > 0 ? (
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={totalFeedback}
-          positivePercentage={positivePercentage}
+    return (
+      <div>
+        <FeedbackOptions
+          options={['good', 'neutral', 'bad']}
+          onLeaveFeedback={this.handleFeedback}
         />
-      ) : (
-        <Notification message="There is no feedback" />
-      )}
-    </div>
-  );
-};
+        {totalFeedback > 0 ? (
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={totalFeedback}
+            positivePercentage={positivePercentage}
+          />
+        ) : (
+          <Notification message="There is no feedback" />
+        )}
+      </div>
+    );
+  }
+}
 
 export default App;
